@@ -1,6 +1,11 @@
 #!/bin/sh
 
-if [ -d /usr/local/share/aclocal ]; then aclocal -I/usr/local/share/aclocal ; else aclocal ; fi
+ACLOCAL_FLAGS=
+if [ -d /usr/local/share/aclocal ]; then
+  ACLOCAL_FLAGS=-I/usr/local/share/aclocal
+fi
+aclocal $ACLOCAL_FLAGS
+
 autoconf
 automake
 ./configure --prefix="$AGNER_INSTALL_PREFIX" \
